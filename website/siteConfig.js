@@ -10,14 +10,14 @@
 
 // List of projects/orgs using your project for the users page.
 const users = [
-  {
-    caption: 'User1',
-    // You will need to prepend the image path with your baseUrl
-    // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.facebook.com',
-    pinned: true,
-  },
+  // {
+  //   caption: 'User1',
+  //   // You will need to prepend the image path with your baseUrl
+  //   // if it is not '/', like: '/test-site/img/image.jpg'.
+  //   image: '/img/undraw_open_source.svg',
+  //   infoLink: 'https://www.facebook.com',
+  //   pinned: true,
+  // },
 ];
 
 const siteConfig = {
@@ -41,12 +41,13 @@ const siteConfig = {
     {doc: 'intro', label: 'Docs'},
     //{doc: 'doc4', label: 'API'},
     //{page: 'help', label: 'Help'},
-    { href: "https://raiserweb.com/", label: "Raiserweb" },
+    { href: "https://github.com/RaiserWeb/Raiser-WP", label: "GitHub" },
+    { href: "https://raiserweb.com/", label: "RaiserWeb" },
     //{blog: true, label: 'Blog'},
   ],
 
   // If you have users set above, you add it here:
-  users,
+  //users,
 
   /* path to images for header/footer */
   headerIcon: 'img/favicon.ico',
@@ -93,6 +94,8 @@ const siteConfig = {
   ogImage: 'img/undraw_online.svg',
   twitterImage: 'img/undraw_tweetstorm.svg',
 
+  twitterUsername: '_paul_reynolds',
+
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
   // docsSideNavCollapsible: true,
@@ -105,7 +108,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+     repoUrl: 'https://github.com/RaiserWeb/Raiser-WP',
 };
 
 module.exports = siteConfig;
