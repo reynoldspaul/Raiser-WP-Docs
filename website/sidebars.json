@@ -1,0 +1,7 @@
+{
+  "docs": {
+    "Getting Started": ["intro", "installation", "cli"],
+    "Core Features": ["configuration","pages","cpt","tax","blocks"],
+    "Premium Features": ["g-blocks","load-more","pagination"]
+  }
+}
