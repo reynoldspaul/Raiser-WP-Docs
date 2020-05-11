@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Guntenberg Blocks · Raiser WP</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Guntenberg Blocks can be created inside the /raiser-wp/blocks folder within your theme."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Guntenberg Blocks · Raiser WP"/><meta property="og:type" content="website"/><meta property="og:url" content="https://raiserweb.github.io/Raiser-Wp-Docs/"/><meta property="og:description" content="Guntenberg Blocks can be created inside the /raiser-wp/blocks folder within your theme."/><meta property="og:image" content="https://raiserweb.github.io/Raiser-Wp-Docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://raiserweb.github.io/Raiser-Wp-Docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/Raiser-Wp-Docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/Raiser-Wp-Docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/Raiser-Wp-Docs/css/main.css"/><script src="/Raiser-Wp-Docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/Raiser-Wp-Docs/"><img class="logo" src="/Raiser-Wp-Docs/img/favicon.ico" alt="Raiser WP"/><h2 class="headerTitleWithLogo">Raiser WP</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/Raiser-Wp-Docs/docs/intro" target="_self">Docs</a></li><li class=""><a href="https://raiserweb.com/" target="_self">Raiserweb</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Premium Features</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/cli">CLI</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Core Features</h3><ul class=""><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/configuration">Configuration</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/cpt">Custom Post Types</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/tax">Custom Taxonomies</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/blocks">Blocks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Premium Features</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/Raiser-Wp-Docs/docs/g-blocks">Guntenberg Blocks</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/load-more">Load More</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/pagination">Pagination</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Guntenberg Blocks</h1></header><article><div><span><p>Guntenberg Blocks can be created inside the /raiser-wp/blocks folder within your theme.</p>
+<pre><code class="hljs">$ php raiser make:block <span class="hljs-string">"Block Name"</span> --<span class="hljs-class"><span class="hljs-keyword">type</span></span>=gacf
+</code></pre>
+<blockquote>
+<p>To register the block in the WP editor, it needs to be added to the blocks array inside the config/gutenberg.php file</p>
+</blockquote>
+<pre><code class="hljs"><span class="hljs-string">'blocks'</span> =&gt; [
+    G_Block::<span class="hljs-class"><span class="hljs-keyword">class</span>,
+<span class="hljs-type">]</span>,
+<span class="hljs-type"></span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="guntenberg-block-class-structure"></a><a href="#guntenberg-block-class-structure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Guntenberg Block Class Structure</h2>
+<p>Example structure of a Guntenberg Block called &quot;Gallery&quot;</p>
+<pre><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gallery_Block</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Raiser_ACF_G_Block</span> </span>{
+
+    <span class="hljs-keyword">public</span> $block_name = <span class="hljs-string">'gallery'</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>{
+
+        <span class="hljs-keyword">$this</span>-&gt;block_settings = [
+            <span class="hljs-string">'title'</span>         =&gt; <span class="hljs-string">'Gallery'</span>,
+        ];
+
+        <span class="hljs-keyword">$this</span>-&gt;gutenberg_block = [
+            <span class="hljs-string">'name'</span>              =&gt; <span class="hljs-string">'gallery'</span>,
+            <span class="hljs-string">'title'</span>             =&gt; <span class="hljs-string">'Gallery'</span>,
+            <span class="hljs-string">'description'</span>       =&gt; <span class="hljs-string">'A custom gallery block.'</span>,
+            <span class="hljs-string">'render_template'</span>   =&gt; get_template_directory().<span class="hljs-string">'/raiser-wp/blocks/gallery/template.php'</span>,
+            <span class="hljs-string">'category'</span>          =&gt; RAISER_THEME,
+            <span class="hljs-string">'icon'</span>              =&gt; <span class="hljs-string">'admin-comments'</span>,
+            <span class="hljs-string">'keywords'</span>          =&gt; <span class="hljs-keyword">array</span>( <span class="hljs-string">'gallery'</span> ),
+            <span class="hljs-string">'mode'</span>              =&gt; <span class="hljs-string">'preview'</span>,
+        ];          
+
+        <span class="hljs-keyword">$this</span>-&gt;fields = [
+            [
+                <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'Photos'</span>,
+                <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'photos'</span>,
+                <span class="hljs-string">'type'</span> =&gt; <span class="hljs-string">'gallery'</span>,
+                <span class="hljs-string">'library'</span> =&gt; <span class="hljs-string">'all'</span>,
+                <span class="hljs-string">'insert'</span> =&gt; <span class="hljs-string">'append'</span>,
+            ],
+        ];  
+
+    }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="template"></a><a href="#template" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Template</h2>
+<p>Inside your block folder will be a template.php file. Inside this file you have access to the following variables</p>
+<pre><code class="hljs">/**
+ * Block Template.
+ *
+ *<span class="hljs-built_in"> array </span>$block             The block settings<span class="hljs-built_in"> and </span>attributes.
+ * string $content          The block inner HTML (empty).
+ * bool $is_preview         True during AJAX preview.
+ * (int|string) $post_id    The post ID this block is saved to.
+ */
+
+</code></pre>
+<p>You can modify the $block array via a callback inside the block class</p>
+<pre><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render_callback</span><span class="hljs-params">($block, $content, $is_preview, $post_id)</span></span>{
+
+    <span class="hljs-comment">// add attributes to block</span>
+    $block[<span class="hljs-string">'new_attribute'</span>] = get_post$post_id);
+
+    <span class="hljs-keyword">return</span> $block;
+}   
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="block-visibility"></a><a href="#block-visibility" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Block Visibility</h2>
+<p>You can restrict blocks on certain post types or screens via setting a location array on the block_settings array inside the init() function. The location array needs to take the form of the ACF location settings.</p>
+<p>You can also define a custom error message to appear in the block editor.</p>
+<pre><code class="hljs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>{
+
+    <span class="hljs-keyword">$this</span>-&gt;block_settings = [
+        <span class="hljs-string">'title'</span>         =&gt; <span class="hljs-string">'Hub Horizontal'</span>,
+        <span class="hljs-string">'location'</span>      =&gt; [
+            [
+                [
+                    <span class="hljs-string">'param'</span> =&gt; <span class="hljs-string">'post_template'</span>,
+                    <span class="hljs-string">'operator'</span> =&gt; <span class="hljs-string">'=='</span>,
+                    <span class="hljs-string">'value'</span> =&gt; <span class="hljs-string">'template-custom.php'</span>,
+                ],
+            ],
+        ],
+        <span class="hljs-string">'location_error_message'</span> =&gt; <span class="hljs-string">'Error: This block is only available to PAGES with the CUSTOM template'</span>,
+    ];
+
+    <span class="hljs-comment">// other variables</span>
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/Raiser-Wp-Docs/docs/blocks"><span class="arrow-prev">← </span><span>Blocks</span></a><a class="docs-next button" href="/Raiser-Wp-Docs/docs/load-more"><span>Load More</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#guntenberg-block-class-structure">Guntenberg Block Class Structure</a></li><li><a href="#template">Template</a></li><li><a href="#block-visibility">Block Visibility</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/Raiser-Wp-Docs/" class="nav-home"><img src="/Raiser-Wp-Docs/img/favicon.ico" alt="Raiser WP" width="66" height="58"/></a><div><h5>Docs</h5><a href="/Raiser-Wp-Docs/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/Raiser-Wp-Docs/docs/en/doc2.html">Guides (or other categories)</a><a href="/Raiser-Wp-Docs/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/Raiser-Wp-Docs/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://raiserweb.com/">Raiserweb</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/Raiser-Wp-Docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Raiserweb Ltd</section></footer></div></body></html>

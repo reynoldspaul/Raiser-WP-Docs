@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Configuration · Raiser WP</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Raiser WP uses array based configuration files, located within your-theme-folder/config. No more large sections of script just to define some basic aspects to your theme."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Configuration · Raiser WP"/><meta property="og:type" content="website"/><meta property="og:url" content="https://raiserweb.github.io/Raiser-Wp-Docs/"/><meta property="og:description" content="Raiser WP uses array based configuration files, located within your-theme-folder/config. No more large sections of script just to define some basic aspects to your theme."/><meta property="og:image" content="https://raiserweb.github.io/Raiser-Wp-Docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://raiserweb.github.io/Raiser-Wp-Docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/Raiser-Wp-Docs/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/Raiser-Wp-Docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/Raiser-Wp-Docs/css/main.css"/><script src="/Raiser-Wp-Docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/Raiser-Wp-Docs/"><img class="logo" src="/Raiser-Wp-Docs/img/favicon.ico" alt="Raiser WP"/><h2 class="headerTitleWithLogo">Raiser WP</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/Raiser-Wp-Docs/docs/intro" target="_self">Docs</a></li><li class=""><a href="https://raiserweb.com/" target="_self">Raiserweb</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Core Features</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/installation">Installation</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/cli">CLI</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Core Features</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/Raiser-Wp-Docs/docs/configuration">Configuration</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/cpt">Custom Post Types</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/tax">Custom Taxonomies</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/blocks">Blocks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Premium Features</h3><ul class=""><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/g-blocks">Guntenberg Blocks</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/load-more">Load More</a></li><li class="navListItem"><a class="navItem" href="/Raiser-Wp-Docs/docs/pagination">Pagination</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Configuration</h1></header><article><div><span><p>Raiser WP uses array based configuration files, located within your-theme-folder/config. No more large sections of script just to define some basic aspects to your theme.</p>
+<p>Init the config files within your theme by running the following command from inside the Raiser-WP plugin directory.</p>
+<pre><code class="hljs">$ php raiser init:<span class="hljs-built_in">config</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="config-helper"></a><a href="#config-helper" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Config Helper</h2>
+<p>You can access config values within your theme code via the following helper function</p>
+<pre><code class="hljs"><span class="hljs-comment">// access the dashboard setting within the admin.php config file</span>
+rw<span class="hljs-constructor">_config('<span class="hljs-params">admin</span>.<span class="hljs-params">dashboard</span>')</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="custom-config-files"></a><a href="#custom-config-files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom Config Files</h2>
+<blockquote>
+<p>You can set up a new config file inside the /config folder. You can access values via the helper function</p>
+</blockquote>
+<pre><code class="hljs">rw<span class="hljs-constructor">_config('<span class="hljs-params">your_file_name</span>.<span class="hljs-params">config_key</span>')</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="adminphp-settings"></a><a href="#adminphp-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>admin.php Settings</h2>
+<table>
+<thead>
+<tr><th>Config Key</th><th>Value</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>show_admin_bar</td><td>true/false</td><td>Show/hide the WordPress admin bar on the front end</td></tr>
+<tr><td>dashboard.show_welcome_panel</td><td>true/false</td><td>Show/hide the welcome panel in the dashboard</td></tr>
+<tr><td>dashboard.show_meta_boxes</td><td>Array eg:<br>dashboard_plugins<br>dashboard_recent_comments<br>dashboard_site_health<br>dashboard_activity</td><td>Set which dashboard meta boxes to show - use the metabox id</td></tr>
+<tr><td>gutenberg_editor</td><td>true/false</td><td>Use the Gutenberg editor in posts</td></tr>
+<tr><td>theme_support</td><td>Array eg:<br>menus<br>post-thumbnails</td><td>Set theme support - <a href="https://developer.wordpress.org/reference/functions/add_theme_support/">WP docs</a></td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="themephp-settings"></a><a href="#themephp-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>theme.php Settings</h2>
+<table>
+<thead>
+<tr><th>Config Key</th><th>Value</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>theme_name</td><td>String</td><td>Define your theme name</td></tr>
+<tr><td>wp_head</td><td>Array of true/false<br>remove_wp_emoji<br>remove_rest_api_header<br>remove_weblog_link<br>remove_wp_generator<br></td><td>Clean up the html header - Remove code that you probably don't need</td></tr>
+<tr><td>permalink_structure</td><td>String</td><td>Permalink Structure - <a href="https://wordpress.org/support/article/settings-permalinks-screen/">WP docs</a></td></tr>
+<tr><td>stylesheets</td><td>Array</td><td>Include stylesheets - <a href="https://developer.wordpress.org/reference/functions/wp_enqueue_style/">WP docs</a></td></tr>
+<tr><td>scripts</td><td>Array</td><td>Include scripts - <a href="https://developer.wordpress.org/reference/functions/wp_enqueue_script/">WP docs</a>.<br>Use '[name]-async-defer' to async and defer the script<br>Set 'localize' to localize js vars</td></tr>
+<tr><td>menus</td><td>Array</td><td>Register Theme Menus</td></tr>
+<tr><td>custom_login_image</td><td>Array<br>src<br>background-color<br>size</td><td>Login Screen Custom Logo</td></tr>
+<tr><td>editor_custom_colors</td><td>Array</td><td>Custom Editor Colours</td></tr>
+<tr><td>image_sizes</td><td>Array</td><td>WordPress Custom Image Sizes</td></tr>
+<tr><td>widgets</td><td>Array</td><td>Register Widget Areas - <a href="https://developer.wordpress.org/reference/functions/register_sidebar/">Wp docs</a></td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="gutenbergphp-settings"></a><a href="#gutenbergphp-settings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>gutenberg.php Settings</h2>
+<table>
+<thead>
+<tr><th>Config Key</th><th>Value</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>theme_support</td><td>Array<br>align-wide</td><td>Add theme support for Gutenberg</td></tr>
+<tr><td>editor_styles</td><td>String</td><td>Enqueue a stylesheet for admin</td></tr>
+<tr><td>block_categories</td><td>Array</td><td>Set custom block categories</td></tr>
+<tr><td>blocks</td><td>Array eg:<br>Block_name::class</td><td>Register your custom Gutenberg blocks</td></tr>
+</tbody>
+</table>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/Raiser-Wp-Docs/docs/cli"><span class="arrow-prev">← </span><span>CLI</span></a><a class="docs-next button" href="/Raiser-Wp-Docs/docs/pages"><span>Next</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#config-helper">Config Helper</a></li><li><a href="#custom-config-files">Custom Config Files</a></li><li><a href="#adminphp-settings">admin.php Settings</a></li><li><a href="#themephp-settings">theme.php Settings</a></li><li><a href="#gutenbergphp-settings">gutenberg.php Settings</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/Raiser-Wp-Docs/" class="nav-home"><img src="/Raiser-Wp-Docs/img/favicon.ico" alt="Raiser WP" width="66" height="58"/></a><div><h5>Docs</h5><a href="/Raiser-Wp-Docs/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/Raiser-Wp-Docs/docs/en/doc2.html">Guides (or other categories)</a><a href="/Raiser-Wp-Docs/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/Raiser-Wp-Docs/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="https://raiserweb.com/">Raiserweb</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/Raiser-Wp-Docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Raiserweb Ltd</section></footer></div></body></html>
