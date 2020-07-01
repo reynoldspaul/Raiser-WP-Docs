@@ -126,3 +126,11 @@ The inside your template, you will have access to this new field
 ```
 echo $post->new_field;
 ```
+
+## Permalink
+To add a filter to the permalink, add the following method to the class
+```
+public function the_permalink_filter($permalink, $post){
+    return $permalink.'?example=true';
+}
+```
