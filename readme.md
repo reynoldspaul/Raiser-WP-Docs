@@ -1,3 +1,8 @@
+## dev
+
+cd website
+npm run start
+
 ## Deploy
 
 Via git bash
