@@ -24,7 +24,7 @@ cd website
 npm run build
 ```
 
-Then push to gh-pages branch or branches
+Then push to gh-pages branch 
 ```
 cd ../
 git checkout gh-pages
